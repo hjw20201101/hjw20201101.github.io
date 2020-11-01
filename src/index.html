@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/layui-src/dist/css/layui.css">
+    <style>
+        * {
+            font-family: 微软雅黑;
+        }
+
+        #app>div:first-child>div:nth-child(2) {
+            width: 57%;
+            border-bottom: 1px solid #f6f6f6;
+        }
+
+        #app>div:nth-child(2)>div:nth-child(2) {
+            width: 57%;
+            height: 710px;
+            overflow: hidden;
+        }
+
+        #app>div:nth-child(3)>div:nth-child(2) {
+            width: 57%;
+        }
+
+        #app>div:first-child>div:first-child,
+        #app>div:nth-child(2)>div:first-child,
+        #app>div:nth-child(3)>div:first-child {
+            width: 18%;
+        }
+
+        #app>div:first-child>div:first-child>div {
+            width: 245px;
+            height: 97px;
+            background: url(./QQ图片20201031151753.png) no-repeat center 0px;
+        }
+
+        .input-group input {
+            display: inline-block;
+            width: 81.4%;
+        }
+
+        .input-group button {
+            margin-top: -3px;
+            margin-left: -4px;
+        }
+
+        .input-group>.my-btn {
+            margin-left: -4px;
+        }
+
+        .input-group {
+            margin-top: 20px;
+        }
+
+        .search_info_bar {
+            margin: 10px 0px;
+        }
+
+        .search_info_bar button {
+            float: right;
+        }
+
+        #app>div:nth-child(2) dt {
+            font-size: 16px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .search-list>:nth-child(3) {
+            margin-top: 5px;
+        }
+
+        .search-list>:nth-child(3) span {
+            display: inline-block;
+            width: 33%;
+            font-size: 10px;
+            color: rgb(142, 142, 147);
+        }
+
+        .layuiadmin-card-status dd {
+            padding-bottom: 15px;
+        }
+
+        .layui-card-header button {
+            margin-left: 80px;
+            font-weight: normal;
+        }
+
+        .layui-card-header {
+            font-weight: bolder;
+            font-size: 15px;
+        }
+
+        .layui-tree {
+            margin-top: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="layui-row">
+            <div class="layui-col-sm3">
+                <div class="grid-demo grid-demo-bg1"></div>
+            </div>
+            <div class="layui-col-sm3">
+                <div class="grid-demo">
+                    <div class="input-group">
+                        <input type="text" lay-verify="required" placeholder="请输入搜索内容" autocomplete="off"
+                            class="layui-input" />
+                        <div id="search" style="display: inline-block;"></div>
+                        <!-- <button type="button" class="layui-btn layui-btn-normal">搜索</button> -->
+                        <button type="button" class="layui-btn layui-btn-primary my-btn">筛选<i
+                                class="layui-icon layui-icon-triangle-d" style="font-size: 12px;margin-right: 0px;"></i>
+                    </div>
+                    <div class="search_info_bar">
+                        <span>找到约0个结果（用时0秒）</span>
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-xs">在结果中查找</button>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-sm3">
+                <div class="grid-demo grid-demo-bg1"></div>
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="layui-col-sm3">
+                <div class="grid-demo grid-demo-bg1" style="height: 100px;">
+                    <!-- 树组件开始 -->
+                    <div id="test1" style="position: fixed;left: 0px;"></div>
+                    <!-- 树组件结束 -->
+                </div>
+            </div>
+            <div class="layui-col-sm3" id="showResult">
+                <!-- <div class="grid-demo" >
+                    <dl class="search-list">
+                        <dt><a href="#"><span style="color: rgb(78, 110, 242);">text<span
+                                        style="color: red;">关于</span>你好</span></a><span
+                                class="layui-badge layui-bg-gray">发文</span></dt>
+                        <dd>Hazelcast代替zookeeper实现缓存数据同步暂不可直接更新到项目上需在测试环境进行测试通过1引入jar包cp-hzsyncjar以及sync-hazelcast模块的class或者直接把cp-hzsyncjar以及sync-hazelcast模块的class打包成mp-hzsyncjar包2server\config\tpl\envproperties新增配置项缓存同步是不是启用haz
+                        </dd>
+                        <dd style="display: block;"><span>文号：</span> <span
+                                style="text-align: center;width: 32.5%;">拟稿：HJW</span> <span
+                                style="text-align: right;">2020-09-29</span></dd>
+                    </dl>
+                    <dl class="search-list">
+                        <dt><a href="#"><span style="color: rgb(78, 110, 242);">text<span
+                                        style="color: red;">关于</span>你好</span></a><span
+                                class="layui-badge layui-bg-gray">发文</span></dt>
+                        <dd>Hazelcast代替zookeeper实现缓存数据同步暂不可直接更新到项目上需在测试环境进行测试通过1引入jar包cp-hzsyncjar以及sync-hazelcast模块的class或者直接把cp-hzsyncjar以及sync-hazelcast模块的class打包成mp-hzsyncjar包2server\config\tpl\envproperties新增配置项缓存同步是不是启用haz
+                        </dd>
+                        <dd style="display: block;"><span>文号：</span> <span
+                                style="text-align: center;width: 32.5%;">拟稿：HJW</span> <span
+                                style="text-align: right;">2020-09-29</span></dd>
+                    </dl>
+                </div> -->
+            </div>
+            <div class="layui-col-sm3">
+                <div class="grid-demo grid-demo-bg1">
+                    <div class="layui-card">
+                        <div class="layui-card-header">搜索热榜</div>
+                        <div class="layui-card-body">
+                            <dl class="layuiadmin-card-status">
+                                <dd>
+                                    <span class="layui-badge layui-bg-orange">1</span>
+                                    <div style="display: inline-block;">
+                                        <p>这里是 <a>搜索热榜</a> 的区域</p>
+                                    </div>
+                                </dd>
+                                <dd>
+                                    <span class="layui-badge layui-bg-orange">1</span>
+                                    <div style="display: inline-block;">
+                                        <p>这里是 <a>搜索热榜</a> 的区域</p>
+                                    </div>
+                                </dd>
+                                <dd>
+                                    <span class="layui-badge layui-bg-orange">1</span>
+                                    <div style="display: inline-block;">
+                                        <p>这里是 <a>搜索热榜</a> 的区域</p>
+                                    </div>
+                                </dd>
+                                <dd>
+                                    <span class="layui-badge layui-bg-orange">1</span>
+                                    <div style="display: inline-block;">
+                                        <p>这里是 <a>搜索热榜</a> 的区域</p>
+                                    </div>
+                                </dd>
+                                <dd>
+                                    <span class="layui-badge layui-bg-orange">1</span>
+                                    <div style="display: inline-block;">
+                                        <p>这里是 <a>搜索热榜</a> 的区域</p>
+                                    </div>
+                                </dd>
+                                <dd>
+                                    <span class="layui-badge layui-bg-orange">1</span>
+                                    <div style="display: inline-block;">
+                                        <p>这里是 <a>搜索热榜</a> 的区域</p>
+                                    </div>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="layui-card">
+                        <div class="layui-card-header">查询历史<button type="button"
+                                class="layui-btn layui-btn-primary layui-btn-xs">清空</button></div>
+                        <div class="layui-card-body">
+                            <dl class="layuiadmin-card-status">
+                                <dd>
+                                    <span class="layui-badge layui-bg-orange">1</span>
+                                    <div style="display: inline-block;">
+                                        <p>这里是 <a>查询历史</a> 的区域</p>
+                                    </div>
+                                </dd>
+                                <dd>
+                                    <span class="layui-badge layui-bg-orange">1</span>
+                                    <div style="display: inline-block;">
+                                        <p>这里是 <a>查询历史</a> 的区域</p>
+                                    </div>
+                                </dd>
+                                <dd>
+                                    <span class="layui-badge layui-bg-orange">1</span>
+                                    <div style="display: inline-block;">
+                                        <p>这里是 <a>查询历史</a> 的区域</p>
+                                    </div>
+                                </dd>
+                                <dd>
+                                    <span class="layui-badge layui-bg-orange">1</span>
+                                    <div style="display: inline-block;">
+                                        <p>这里是 <a>查询历史</a> 的区域</p>
+                                    </div>
+                                </dd>
+                                <dd>
+                                    <span class="layui-badge layui-bg-orange">1</span>
+                                    <div style="display: inline-block;">
+                                        <p>这里是 <a>查询历史</a> 的区域</p>
+                                    </div>
+                                </dd>
+                                <dd>
+                                    <span class="layui-badge layui-bg-orange">1</span>
+                                    <div style="display: inline-block;">
+                                        <p>这里是 <a>查询历史</a> 的区域</p>
+                                    </div>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="layui-row">
+            <div class="layui-col-sm3">
+                <div class="grid-demo grid-demo-bg1" style="height: 10px;"></div>
+            </div>
+            <div class="layui-col-sm3">
+                <div class="grid-demo">
+                    <div id="laypage">
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+<script src="/main.js"></script>
+<script src="../node_modules/layui-src/dist/layui.js"></script>
+<script src="./me.js"></script>
+<!-- <script>
+    // 树组件
+    layui.use(['tree','laypage'], function () {
+        var tree = layui.tree;
+        var laypage = layui.laypage;
+        //渲染
+        var inst1 = tree.render({
+            elem: '#test1', //绑定元素
+            data: [{
+                title: '按分类统计(15件)',//一级菜单
+                children: [{
+                    title: '行政发文', //二级菜单
+                },
+                {
+                    title: '公司收文'
+                },
+                {
+                    title: '部门发文'
+                },
+                {
+                    title: '部门签报'
+                },
+                {
+                    title: '会议纪要'
+                },
+                {
+                    title: '协同工作'
+                },
+                {
+                    title: '部门收文'
+                },
+                {
+                    title: '会议通知'
+                }
+                ]
+            }],
+            accordion: true
+        });
+        laypage.render({
+            elem: 'laypage' ,//注意，这里的 test1 是 ID，不用加 # 号 
+            count: 10 ,//数据总数，从服务端得到
+            limit: 8,
+            theme:'#1E9FFF'
+        });
+    });
+    //树结束
+    //分页开始
+    // layui.use('laypage', function () {
+    //     var laypage = layui.laypage;
+
+    //     //执行一个laypage实例
+    //     laypage.render({
+    //         elem: 'laypage' ,//注意，这里的 test1 是 ID，不用加 # 号 
+    //         count: 10 ,//数据总数，从服务端得到
+    //         limit: 8,
+    //         theme:'#1E9FFF'
+    //     });
+    // });
+    //分页结束
+</script> -->
+
+</html>
